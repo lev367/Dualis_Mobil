@@ -137,3 +137,82 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+
+# =========================
+
+# Docusaurus (extra)
+
+# =========================
+
+.docusaurus/
+
+.cache/
+
+.deploy/
+
+website/build/
+ 
+# =========================
+
+# React Native
+
+# =========================
+ 
+# Expo
+
+.expo/
+
+expo-env.d.ts
+ 
+# Android
+
+android/.gradle/
+
+android/app/build/
+
+android/build/
+
+android/local.properties
+
+android/captures/
+
+*.keystore
+ 
+# iOS
+
+ios/Pods/
+
+ios/build/
+
+ios/*.xcworkspace
+
+ios/*.xcodeproj/xcuserdata/
+
+ios/*.xcodeproj/project.xcworkspace/
+
+ios/*.xcuserstate
+
+ios/.xcode.env.local
+ 
+# Metro / Watchman
+
+.metro-health-check*
+ 
+# =========================
+
+# IDEs & OS
+
+# =========================
+
+.vscode/
+
+.idea/
+
+*.iml
+
+.DS_Store
+
+Thumbs.db
+
+ 
