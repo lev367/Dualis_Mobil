@@ -21,6 +21,23 @@ function ArticleStack() {
         component={ArticleListScreen}
         options={{ title: "Bejegyzések" }}
       />
+      <Stack.Screen
+        name="ArticleDetail"
+        component={ArticleDetailsScreen}
+        options={{ title: "Bejegyzés részletei" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SimpleListStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SimpleListScreen"
+        component={SimpleListScreen}
+        options={{ title: "Egyszerű lista" }}
+      />
     </Stack.Navigator>
   );
 }
@@ -36,6 +53,16 @@ export default function App() {
             tabBarLabel: "Bejegyzések",
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="article" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="SimpleListTab"
+          component={SimpleListStack}
+          options={{
+            tabBarLabel: "Egyszerű lista",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="book" size={size} color={color} />
             ),
           }}
         />
