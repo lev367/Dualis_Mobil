@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import {
   View,
@@ -7,15 +7,37 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
+  RefreshControl,
 } from "react-native";
 
 export default function ArticleListScreen({ navigation }) {
   const [articles, setArticles] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   const noImage =
     "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
 
+  const fetchArticles = async () => {
+    try {
+      const res = await fetch("http://10.6.24.108:5112/api/getAllArticles");
+      const json = await res.json();
+      setArticles(json.data);
+    } catch (err) {
+      console.error("Hiba,", err);
+    }
+  };
+
   useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await fetchArticles();
+    setRefreshing(false);
+  }, []);
+
+  /* useEffect(() => {
     console.log("Fetching...");
     fetch("http://10.6.24.108:5112/api/getAllArticles")
       .then((res) => res.json())
@@ -26,6 +48,7 @@ export default function ArticleListScreen({ navigation }) {
       })
       .catch((err) => console.error(err));
   }, []);
+  */
   const renderItem = ({ item }) => {
     const imageSource =
       typeof item.imageUrl === "string" &&
@@ -58,6 +81,8 @@ export default function ArticleListScreen({ navigation }) {
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         contentContainerStyle={styles.container}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
       />
     </View>
   );

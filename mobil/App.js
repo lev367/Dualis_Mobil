@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import ArticleListScreen from "./screens/ArticleListScreen/ArticleListScreen";
 import ArticleDetailsScreen from "./screens/ArticleDetailsScreen/ArticleDetailsScreen";
@@ -25,6 +25,18 @@ function ArticleStack() {
         name="ArticleDetail"
         component={ArticleDetailsScreen}
         options={{ title: "Bejegyzés részletei" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SearchStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SearchScreen"
+        component={SearchScreen}
+        oprions={{ title: "Pokedex" }}
       />
     </Stack.Navigator>
   );
@@ -63,6 +75,20 @@ export default function App() {
             tabBarLabel: "Egyszerű lista",
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="book" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="SearchTab"
+          component={SearchStack}
+          options={{
+            tabBarLabel: "Pokedex",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="pokeball"
+                size={size}
+                color={color}
+              />
             ),
           }}
         />
